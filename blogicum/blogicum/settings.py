@@ -27,12 +27,39 @@ DEBUG = True
 
 ALLOWED_HOSTS = []
 
+TEMPLATES_DIR = BASE_DIR / 'templates'
+
+TEMPLATES = [
+    {
+        'BACKEND': 'django.template.backends.django.DjangoTemplates',
+        # Указываем, в каких директориях искать HTML-шаблоны.
+        'DIRS': [TEMPLATES_DIR],
+
+        # Оставляем True: шаблоны приложений будут искаться
+        # не только на уровне проекта, но и в директориях приложений.
+        # Это необходимо для работы
+        # встроенных приложений (например админки).
+        'APP_DIRS': True,
+        'OPTIONS': {
+            'context_processors': [
+                'django.template.context_processors.debug',
+                'django.template.context_processors.request',
+                'django.contrib.auth.context_processors.auth',
+                'django.contrib.messages.context_processors.messages',
+            ]
+        },
+    }
+]
+
+STATICFILES_DIRS = [
+    BASE_DIR / 'static_dev',
+] 
 
 # Application definition
 
 INSTALLED_APPS = [
-    'pages.apps.PagesConfig'
-    'blog.apps.BlogConfig'
+    'pages.apps.PagesConfig',
+    'blog.apps.BlogConfig',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
@@ -56,7 +83,7 @@ ROOT_URLCONF = 'blogicum.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [],
+        'DIRS': [TEMPLATES_DIR],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [

@@ -53,7 +53,7 @@ TEMPLATES = [
 
 STATICFILES_DIRS = [
     BASE_DIR / 'static_dev',
-] 
+]
 
 # Application definition
 

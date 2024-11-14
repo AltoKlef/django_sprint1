@@ -47,14 +47,13 @@ posts = [
 def index(request):
     template_name = 'blog/index.html'
     context = {'posts': posts[::-1]}
-    return render(request, template_name, context) 
+    return render(request, template_name, context)
 
 
 def post_detail(request, id):
     template_name = 'blog/detail.html'
     # Ищем пост по id
     post = next((post for post in posts if post['id'] == id), None)
-    
     if post is None:
         # Если пост не найден, создаем объект с пустыми значениями
         post = {
